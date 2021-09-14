@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -26,3 +26,13 @@ def messages():
 	}
 	return render_template('messages.html', data=data)
 
+
+@app.route('/dict', methods=['post', 'get'])
+def dict():
+	text = ''
+	if request.method == 'POST':
+		text = request.form.get('text')
+	else:
+		return render_template('form.html', text=text)
+
+	return render_template('form.html', text=text)

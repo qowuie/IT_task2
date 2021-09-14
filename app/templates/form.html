@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+	<form action="" method="post">
+    	<div class="mb-3" style="text-align: center;">
+			<label for="exampleFormControlTextarea1" class="form-label">Введите что-то</label>
+			<textarea class="form-control" name="text" id="exampleFormControlTextarea1" rows="3" style="width: 45%;margin-left: auto;
+    margin-right: auto"></textarea>
+			{% if text != '' %}
+				<p>Вы ввели: {{ text }}</p>
+			{% endif %}
+		</div>
+		<p>
+			<input type="submit" style="margin-left: auto;
+    margin-right: auto">
+		</p>
+	</form>
+{% endblock %}

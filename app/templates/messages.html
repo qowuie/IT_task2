@@ -3,6 +3,8 @@
 {% block content %}
     <h1>Hi, {{ data['username'] }}</h1>
     {% for message in data['messages'] %}
-        <li>Автор: {{ message.author }}. Сообщение: {{ message.body }}</li>
+        <div class="alert alert-primary" role="alert">
+            Автор: {{ message.author }} | Сообщение: {{ message.body }}
+        </div>
     {% endfor %}
 {% endblock %}

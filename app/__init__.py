@@ -5,10 +5,20 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+	return render_template('index.html')
+
+
+@app.route('/hello')
+def hello_world():
 	data = {
 			'title': 'hello page',
 			'username': 'Vasya'}
 	return render_template('index.html', data=data)
+
+
+@app.route('/hello/<name>')
+def hello_with_name(name):
+	return f'Hello {name}'
 
 
 @app.route('/messages')
@@ -36,3 +46,7 @@ def dict():
 		return render_template('form.html', text=text)
 
 	return render_template('form.html', text=text)
+
+
+if __name__ == '__main__':
+	app.run(debug=True)

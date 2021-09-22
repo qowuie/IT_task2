@@ -23,35 +23,46 @@ def hello_with_name(name):
 
 my_words = {"hello": "привет",
             "car": "машина",
-			"cat": "кошка",
-			"python": "питон",
-			"minesweeper": "сапер",
-			"mouse": "мышь",
-			"laptop": "ноутбук", }
+            "cat": "кошка",
+            "python": "питон",
+            "minesweeper": "сапер",
+            "mouse": "мышь",
+            "laptop": "ноутбук",
+            "homework": "домашняя работа",
+            "cup": "кружка",
+            "glass": "стекло",
+            "sand": "песок",
+            "net": "сеть",
+            "window": "окно", }
 
 
 @app.route('/dict', methods=['GET', 'POST'])
 def dict_page():
     if request.method == 'POST':
-        word = my_words[request.form["word"].lower()]
-        return render_template('result.html', word=word)
+        if my_words.get(request.form["word"].lower()):
+            data = {"word": my_words[request.form["word"].lower()],
+                    "eng_word": request.form["word"].lower(), }
+        else:
+            data = {"word": "There is no word like that",
+                    "eng_word": "", }
+        return render_template('dict.html', data=data)
     return render_template('dict.html')
 
 
-@app.route('/messages')
-def messages():
-    data = {
-        'title': 'Сообщения',
-        'username': 'Vasya',
-        'messages': [
-            {'author': 'Jack', 'body': 'massage1'},
-            {'author': 'swf', 'body': 'massage2'},
-            {'author': 'rgh', 'body': 'massage3'},
-            {'author': 'fbg', 'body': 'massage4'},
-            {'author': 'wefe', 'body': 'massage5'},
-        ]
-    }
-    return render_template('messages.html', data=data)
+# @app.route('/messages')
+# def messages():
+#     data = {
+#         'title': 'Сообщения',
+#         'username': 'Vasya',
+#         'messages': [
+#             {'author': 'Jack', 'body': 'massage1'},
+#             {'author': 'swf', 'body': 'massage2'},
+#             {'author': 'rgh', 'body': 'massage3'},
+#             {'author': 'fbg', 'body': 'massage4'},
+#             {'author': 'wefe', 'body': 'massage5'},
+#         ]
+#     }
+#     return render_template('messages.html', data=data)
 
 
 if __name__ == '__main__':

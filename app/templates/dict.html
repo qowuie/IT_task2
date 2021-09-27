@@ -1,22 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
-<form action="dict" method="post">
+<form action="/translate" method="post">
+
+    <select class="form-select" aria-label="Default select example" name="language_from">
+        <option selected>Выберете переводимый язык</option>
+        <option value="en">English</option>
+        <option value="ru">Russian</option>
+        <option value="de">De</option>
+    </select>
 
     {% if request.method == "POST" %}
         <div class="form-group">
             <label for="exampleFormControlInput1">Слово:</label>
-            <input type="text" class="form-control" name="word" value="{{ data["eng_word"] }}">
+            <input type="text" class="form-control" name="word" value="{{ data["word_ru"] }}">
         </div>
 
         <div>
-            <h4>{{ data["word"] }}</h4>
+            <h4>{{ data["word_eng"] }}</h4>
         </div>
     {% else %}
         <div class="form-group">
             <label for="exampleFormControlInput1">Слово:</label>
-            <input type="text" class="form-control" name="word" placeholder=" Type word on English ">
+            <input type="text" class="form-control" name="word">
         </div>
     {% endif %}
+
+    <select class="form-select" aria-label="Default select example" name="language_to">
+        <option selected>На какой</option>
+        <option value="en">English</option>
+        <option value="ru">Russian</option>
+        <option value="de">De</option>
+    </select>
 
     <div class="form-group">
         <button class="btn btn-dark" type="submit" formmethod="post">Перевести</button>
